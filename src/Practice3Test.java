@@ -2,6 +2,7 @@ import org.junit.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 public class Practice3Test {
 
@@ -40,7 +41,7 @@ public class Practice3Test {
         Matrix c = new Matrix(3,3);
         c.setMat(new int[][] {{1,2,3},{5,6,7},{9,10,11}},3,3);
 
-        assertEquals(c,matrix.add(a,b));
+        assertTrue(matrix.areSame(c,matrix.add(a,b)));
     }
 
     @Test(expected = CustomException.class)
@@ -57,11 +58,11 @@ public class Practice3Test {
 
     @Test
     public void consecutiveStreamOfNumbersTest() {
-        assertEquals("theya are consecutive",true,
+        assertEquals("they are consecutive",true,
                 practice.consecutiveStreamOfNumbers("50,51,52,53,54,55,56"));
-        assertEquals("theya are not consecutive",false,
+        assertEquals("they are not consecutive",false,
                 practice.consecutiveStreamOfNumbers("1,2,3,2,1,0,4"));
-        assertEquals("theya are consecutive",true,
+        assertEquals("they are consecutive",true,
                 practice.consecutiveStreamOfNumbers("7,6,5,4,3,2,1"));
     }
 

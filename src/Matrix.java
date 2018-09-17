@@ -34,11 +34,18 @@ public class Matrix {
         if(a.col!=b.row || a.row!=b.col) return null;
         for(int i=0;i<a.row;i++) {
             for(int j=0;j<a.col;j++) {
-//                System.out.println(a.getElement(i,j)+b.getElement(i,j));
-//                setElement(i,j,a.getElement(i,j)+b.getElement(i,j));
                 c.mat[i][j] = a.getElement(i,j)+b.getElement(i,j);
             }
         }
         return c;
+    }
+
+    public boolean areSame(Matrix a,Matrix b) {
+        for(int i=0;i<a.getRow();i++) {
+            for(int j=0;j<a.getCol();j++) {
+                if(a.getElement(i,j)!=b.getElement(i,j)) return false;
+            }
+        }
+        return true;
     }
 }

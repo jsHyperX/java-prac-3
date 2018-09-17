@@ -1,5 +1,5 @@
 class CustomException extends Exception {
-    public CustomException(final String message) {
+    public CustomException(String message) {
         super(message);
     }
 }
