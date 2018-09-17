@@ -1,7 +1,12 @@
-class CustomException extends Exception {
-    public CustomException(String message) {
-        super(message);
+
+class InvalidScoreException extends Exception {
+    private String msg;
+
+    public InvalidScoreException(String message) {
+        this.msg = message;
     }
+
+    public String getMessage() { return this.msg; }
 }
 
 public class StudentMarks {
@@ -10,14 +15,21 @@ public class StudentMarks {
 
     public StudentMarks() {};
 
+    public StudentMarks(int n) {
+        this.numOfStudents = n;
+        this.marks = new int[n];
+    }
+
     public void setNumOfStudents(int n) { this.numOfStudents = n; }
 
     public int getNumOfStudents() { return numOfStudents; }
 
-    public void setMarks(int a[],int n) throws CustomException {
-        this.marks = new int[n];
+    public void setMarks(int a[],int n) throws InvalidScoreException {
         for(int i=0;i<n;i++) {
-            if(a[i]>=100 || a[i]<=0) throw new CustomException("please enter a valid score");
+            if (a[i] >= 100 || a[i] <= 0) {
+                InvalidScoreException invalid = new InvalidScoreException("please enter a valid score");
+                throw invalid;
+            }
             this.marks[i] = a[i];
         }
     }

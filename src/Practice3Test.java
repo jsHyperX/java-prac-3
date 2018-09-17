@@ -1,7 +1,7 @@
 import org.junit.*;
+import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 public class Practice3Test {
@@ -10,7 +10,6 @@ public class Practice3Test {
     private static MainCatch mainCatch;
     private static ExceptionHandle exceptionHandle;
     private static Matrix matrix;
-    private static StudentMarks studentMarks;
 
     @BeforeClass
     public static void setUp() throws Exception {
@@ -18,7 +17,6 @@ public class Practice3Test {
         mainCatch = new MainCatch();
         exceptionHandle = new ExceptionHandle();
         matrix = new Matrix();
-        studentMarks = new StudentMarks();
     }
 
     @AfterClass
@@ -27,7 +25,6 @@ public class Practice3Test {
         mainCatch = null;
         exceptionHandle = null;
         matrix = null;
-        studentMarks = null;
     }
 
     @Test
@@ -44,16 +41,23 @@ public class Practice3Test {
         assertTrue(matrix.areSame(c,matrix.add(a,b)));
     }
 
-    @Test(expected = CustomException.class)
-    public void StudentMarksTest() throws CustomException {
-        studentMarks.setNumOfStudents(5);
-        studentMarks.setMarks(new int[] { 22,43,54,66,23},5);
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void StudentMarksTest() throws InvalidScoreException {
+        thrown.expect(InvalidScoreException.class);
+        thrown.expectMessage("please enter a valid score");
+        StudentMarks mark = new StudentMarks(5);
+        mark.setMarks(new int[] { 22,43,0,66,23},5);
     }
 
     @Test
     public void removeVowelsTest() {
         assertEquals("they both should match after vowels are removed",
                 new String[]{"ptn","bnglr","hydrbd"},practice.removeVowels(new String[]{"patna","bangalore","hyderabad"}));
+        assertEquals("they both should match after vowels are removed",
+                new String[]{"nd","ntd Stts","Grmny","gypt","czchslvk"},practice.removeVowels(new String[]{"India","United States","Germany","Egypt","czechoslovakia"}));
     }
 
     @Test

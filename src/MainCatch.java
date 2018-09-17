@@ -2,7 +2,7 @@ public class MainCatch {
 
     public MainCatch() {}
 
-    public void main() throws Exception {
+    public void main() {
         try {
             Exception exp = new Exception("new exception found");
             throw exp;
@@ -16,7 +16,7 @@ public class MainCatch {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         MainCatch mc = new MainCatch();
         mc.main();
     }
