@@ -12,7 +12,7 @@ public class Practice3Test {
     private static Matrix matrix;
 
     @BeforeClass
-    public static void setUp() throws Exception {
+    public static void setUp() {
         practice = new Practice3();
         mainCatch = new MainCatch();
         exceptionHandle = new ExceptionHandle();
@@ -20,7 +20,7 @@ public class Practice3Test {
     }
 
     @AfterClass
-    public static void tearDown() throws Exception {
+    public static void tearDown() {
         practice = null;
         mainCatch = null;
         exceptionHandle = null;
@@ -83,5 +83,15 @@ public class Practice3Test {
                                                 {"BB|","WW|","BB|","WW|","BB|","WW|","BB|","WW|"}
         };
         assertEquals(chess,practice.genChessBoard());
+    }
+
+    @Test
+    public void daysCheck(){
+        String [] expectedValue={"Mon 17/09/2018","Sun 23/09/2018"};
+        WeekyWeek p = new WeekyWeek();
+        String [] actualValue = p.firstNdLastDay();
+        assertEquals(expectedValue, actualValue);
+
+
     }
 }
